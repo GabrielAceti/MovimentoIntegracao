@@ -10,6 +10,11 @@ namespace ProjetoImplantacaoMovimento.Services
     {
         public void AdicionaMovimento(Movimento movimento)
         {
+            var movimentos = GetMovimentos();
+
+            int newId = int.Parse(movimentos.Max(x => x.IdMovimento)) + 1;
+            movimento.IdMovimento = newId.ToString();
+
             var fs = new FileService();
             fs.WriteFile(ParseMovimentoTxt(movimento), MovimentoDefaults.MovimentoPath);
         }

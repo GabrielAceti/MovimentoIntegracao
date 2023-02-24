@@ -16,9 +16,16 @@ namespace ProjetoImplantacaoMovimento
         {
             FormMovimentoCadastro frm = new FormMovimentoCadastro();
             frm.ShowDialog();
+            AtualizaGrid();
         }
 
         private void FormMovimentosVisao_Load(object sender, EventArgs e)
+        {
+            gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
+            AtualizaGrid();
+        }
+
+        private void AtualizaGrid()
         {
             gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
             var movimentoService = new MovimentoService();
