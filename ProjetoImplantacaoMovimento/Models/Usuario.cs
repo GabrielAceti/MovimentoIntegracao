@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProjetoImplantacaoMovimento.Models
 {
-    public class Usuario
+    public static class Usuario
     {
-        public int IdUsuario => 1;
-        public string Nome => "mestre";
+        public static int IdUsuario => 1;
+        public static string Nome => "mestre";
     }
 }

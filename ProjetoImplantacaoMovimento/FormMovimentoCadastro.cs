@@ -1,4 +1,5 @@
-﻿using ProjetoImplantacaoMovimento.Data;
+﻿using ProjetoImplantacaoMovimento.Models;
+using ProjetoImplantacaoMovimento.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,9 @@ namespace ProjetoImplantacaoMovimento
 {
     public partial class FormMovimentoCadastro : Form
     {
-        private AppDbContext _context;
-
-        public FormMovimentoCadastro(AppDbContext context)
+        public FormMovimentoCadastro()
         {
             InitializeComponent();
-            _context = context;
         }
 
         private void simpleButtonCANCELAR_Click(object sender, EventArgs e)
@@ -28,7 +26,19 @@ namespace ProjetoImplantacaoMovimento
 
         private void simpleButtonSALVAR_Click(object sender, EventArgs e)
         {
+            var movimento = new Movimento()
+            {
+                NumeroMovimento = maskedTextBoxNUMEROMOVIMENTO.Text,
+                Descricao = textBoxDESCRICAO.Text,
+                CriadoPor = Usuario.Nome,
+                CriadoEm = DateTime.Now,
+                ModificadoPor = Usuario.Nome,
+                ModificadoEm = DateTime.Now
+            };
 
+            var movimentoService = new MovimentoService();
+            movimentoService.AdicionaMovimento(movimento);
+            this.Close();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using ProjetoImplantacaoMovimento.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,16 +12,14 @@ namespace ProjetoImplantacaoMovimento
 {
     public partial class FormMovimentosVisao : Form
     {
-        private AppDbContext _context;
-        public FormMovimentosVisao(AppDbContext context)
+        public FormMovimentosVisao()
         {
             InitializeComponent();
-            _context = context;
         }
 
         private void toolStripButtonNOVO_Click(object sender, EventArgs e)
         {
-            FormMovimentoCadastro frm = new FormMovimentoCadastro(_context);
+            FormMovimentoCadastro frm = new FormMovimentoCadastro();
             frm.ShowDialog();
         }
     }

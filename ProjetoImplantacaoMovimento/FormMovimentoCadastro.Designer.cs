@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.maskedTextBoxNUMEROMOVIMENTO = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxDESCRICAO = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // simpleButtonSALVAR
@@ -88,7 +88,7 @@
             // maskedTextBoxNUMEROMOVIMENTO
             // 
             this.maskedTextBoxNUMEROMOVIMENTO.Location = new System.Drawing.Point(12, 68);
-            this.maskedTextBoxNUMEROMOVIMENTO.Mask = "00.00.00";
+            this.maskedTextBoxNUMEROMOVIMENTO.Mask = "00,00,00";
             this.maskedTextBoxNUMEROMOVIMENTO.Name = "maskedTextBoxNUMEROMOVIMENTO";
             this.maskedTextBoxNUMEROMOVIMENTO.Size = new System.Drawing.Size(100, 20);
             this.maskedTextBoxNUMEROMOVIMENTO.TabIndex = 6;
@@ -102,21 +102,21 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Descrição";
             // 
-            // textBox1
+            // textBoxDESCRICAO
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(12, 107);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(463, 20);
-            this.textBox1.TabIndex = 7;
+            this.textBoxDESCRICAO.Location = new System.Drawing.Point(12, 107);
+            this.textBoxDESCRICAO.Name = "textBoxDESCRICAO";
+            this.textBoxDESCRICAO.Size = new System.Drawing.Size(463, 20);
+            this.textBoxDESCRICAO.TabIndex = 7;
             // 
             // FormMovimentoCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(486, 186);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxDESCRICAO);
             this.Controls.Add(this.maskedTextBoxNUMEROMOVIMENTO);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -141,7 +141,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxNUMEROMOVIMENTO;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxDESCRICAO;
     }
 }
 

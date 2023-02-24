@@ -17,7 +17,7 @@ namespace ProjetoImplantacaoMovimento
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPrincipal(new Data.AppDbContext()));            
+            Application.Run(new FormPrincipal());            
         }
     }
 }
