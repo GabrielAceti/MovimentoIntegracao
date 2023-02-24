@@ -111,6 +111,7 @@
             this.Name = "FormMovimentosVisao";
             this.Text = "Visão de Movimentos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormMovimentosVisao_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlMOVIMENTOS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);

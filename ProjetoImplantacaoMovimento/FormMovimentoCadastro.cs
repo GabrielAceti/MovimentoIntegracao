@@ -1,13 +1,6 @@
 ﻿using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoImplantacaoMovimento
@@ -31,9 +24,9 @@ namespace ProjetoImplantacaoMovimento
                 NumeroMovimento = maskedTextBoxNUMEROMOVIMENTO.Text,
                 Descricao = textBoxDESCRICAO.Text,
                 CriadoPor = Usuario.Nome,
-                CriadoEm = DateTime.Now,
+                CriadoEm = DateTime.Now.ToString("yyyy-MM-dd"),
                 ModificadoPor = Usuario.Nome,
-                ModificadoEm = DateTime.Now
+                ModificadoEm = DateTime.Now.ToString("yyyy-MM-dd")
             };
 
             var movimentoService = new MovimentoService();

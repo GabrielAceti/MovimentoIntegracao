@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProjetoImplantacaoMovimento.Constant;
+using ProjetoImplantacaoMovimento.Services;
+using System;
 using System.Windows.Forms;
 
 namespace ProjetoImplantacaoMovimento
@@ -21,6 +16,15 @@ namespace ProjetoImplantacaoMovimento
         {
             FormMovimentoCadastro frm = new FormMovimentoCadastro();
             frm.ShowDialog();
+        }
+
+        private void FormMovimentosVisao_Load(object sender, EventArgs e)
+        {
+            gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
+            var movimentoService = new MovimentoService();
+            var movimentos = movimentoService.GetMovimentos();
+
+            gridControlMOVIMENTOS.DataSource = movimentos;
         }
     }
 }
