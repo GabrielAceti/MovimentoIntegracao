@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemMOVIMENTOS = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemPREVISTO = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -47,8 +47,8 @@
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
             this.ribbon.SearchEditItem,
-            this.barButtonItem1,
-            this.barButtonItem2,
+            this.barButtonItemMOVIMENTOS,
+            this.barButtonItemPREVISTO,
             this.barButtonItem3,
             this.barButtonItem4});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
@@ -59,24 +59,27 @@
             this.ribbon.Size = new System.Drawing.Size(657, 158);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
-            // barButtonItem1
+            // barButtonItemMOVIMENTOS
             // 
-            this.barButtonItem1.Caption = "Movimentos";
-            this.barButtonItem1.Id = 1;
-            this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            this.barButtonItemMOVIMENTOS.Caption = "Movimentos";
+            this.barButtonItemMOVIMENTOS.Id = 1;
+            this.barButtonItemMOVIMENTOS.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemMOVIMENTOS.ImageOptions.Image")));
+            this.barButtonItemMOVIMENTOS.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemMOVIMENTOS.ImageOptions.LargeImage")));
+            this.barButtonItemMOVIMENTOS.Name = "barButtonItemMOVIMENTOS";
+            this.barButtonItemMOVIMENTOS.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.barButtonItemMOVIMENTOS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemMOVIMENTOS_ItemClick);
             // 
-            // barButtonItem2
+            // barButtonItemPREVISTO
             // 
-            this.barButtonItem2.Caption = "barButtonItem2";
-            this.barButtonItem2.Id = 2;
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            this.barButtonItemPREVISTO.Caption = "Previsto";
+            this.barButtonItemPREVISTO.Id = 2;
+            this.barButtonItemPREVISTO.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItemPREVISTO.ImageOptions.Image")));
+            this.barButtonItemPREVISTO.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItemPREVISTO.ImageOptions.LargeImage")));
+            this.barButtonItemPREVISTO.Name = "barButtonItemPREVISTO";
+            this.barButtonItemPREVISTO.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.barButtonItemPREVISTO.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemPREVISTO_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -104,16 +107,14 @@
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItemMOVIMENTOS);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // ribbonPageGroup2
             // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem2);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem3);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem4);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItemPREVISTO);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "Movimentos";
+            this.ribbonPageGroup2.Text = "Processos";
             // 
             // ribbonStatusBar
             // 
@@ -147,8 +148,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemMOVIMENTOS;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemPREVISTO;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;

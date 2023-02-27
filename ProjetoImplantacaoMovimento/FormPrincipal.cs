@@ -18,9 +18,16 @@ namespace ProjetoImplantacaoMovimento
             InitializeComponent();
         }
 
-        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        private void barButtonItemMOVIMENTOS_ItemClick(object sender, ItemClickEventArgs e)
         {
             FormMovimentosVisao frm = new FormMovimentosVisao();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void barButtonItemPREVISTO_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            FormPrevistoVisao frm = new FormPrevistoVisao();
             frm.MdiParent = this;
             frm.Show();
         }

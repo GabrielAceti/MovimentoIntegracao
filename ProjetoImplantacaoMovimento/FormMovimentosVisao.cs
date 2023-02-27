@@ -1,4 +1,6 @@
 ﻿using ProjetoImplantacaoMovimento.Constant;
+using ProjetoImplantacaoMovimento.Enums;
+using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;
 using System.Windows.Forms;
@@ -21,17 +23,23 @@ namespace ProjetoImplantacaoMovimento
 
         private void FormMovimentosVisao_Load(object sender, EventArgs e)
         {
-            gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
             AtualizaGrid();
         }
 
         private void AtualizaGrid()
         {
             gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
-            var movimentoService = new MovimentoService();
-            var movimentos = movimentoService.GetMovimentos();
+            var movimentos = new MovimentoService().GetMovimentos();
 
             gridControlMOVIMENTOS.DataSource = movimentos;
+        }
+
+        private void toolStripButtonEDITAR_Click(object sender, EventArgs e)
+        {
+            int index = gridView1.FocusedRowHandle;
+            Movimento movimento = (Movimento)gridView1.GetRow(index);
+
+            new FormMovimentoCadastro().Editar(movimento);
         }
     }
 }

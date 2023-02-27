@@ -1,4 +1,5 @@
-﻿using ProjetoImplantacaoMovimento.Models;
+﻿using ProjetoImplantacaoMovimento.Enums;
+using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;
 using System.Windows.Forms;
@@ -7,6 +8,9 @@ namespace ProjetoImplantacaoMovimento
 {
     public partial class FormMovimentoCadastro : Form
     {
+        private AcaoEnum _acao;
+        private Movimento _movimento;   
+
         public FormMovimentoCadastro()
         {
             InitializeComponent();
@@ -28,10 +32,27 @@ namespace ProjetoImplantacaoMovimento
                 ModificadoPor = Usuario.Nome,
                 ModificadoEm = DateTime.Now.ToString("yyyy-MM-dd")
             };
-
-            var movimentoService = new MovimentoService();
-            movimentoService.AdicionaMovimento(movimento);
+            
+            new MovimentoService().AdicionaMovimento(movimento);
             this.Close();
+        }
+
+        public void Editar(Movimento movimento)
+        {
+            _acao = AcaoEnum.Editar;
+            _movimento = movimento;
+
+            this.ShowDialog();
+        }
+
+        private void FormMovimentoCadastro_Load(object sender, EventArgs e)
+        {
+            if(_acao == AcaoEnum.Editar)
+            {
+                textBoxIDMOVIMENTO.Text = _movimento.IdMovimento;
+                maskedTextBoxNUMEROMOVIMENTO.Text = _movimento.NumeroMovimento;
+                textBoxDESCRICAO.Text = _movimento.Descricao;
+            }
         }
     }
 }

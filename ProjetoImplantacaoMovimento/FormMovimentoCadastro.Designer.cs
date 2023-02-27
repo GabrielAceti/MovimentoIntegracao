@@ -127,6 +127,7 @@
             this.Name = "FormMovimentoCadastro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Movimentos";
+            this.Load += new System.EventHandler(this.FormMovimentoCadastro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -24,11 +24,11 @@ namespace ProjetoImplantacaoMovimento.Services
             var movimentos = new List<Movimento>();
 
             var fileService = new FileService();
-            string[] fileContent = fileService.ReadFile(MovimentoDefaults.MovimentoPath);
+            string[] fileLines = fileService.ReadFile(MovimentoDefaults.MovimentoPath);
 
-            for(int i=0; i< fileContent.Count(); i++)
+            for(int i=0; i< fileLines.Count(); i++)
             {
-                movimentos.Add(MapMovimentos(fileContent[i].Split('|')));
+                movimentos.Add(MapMovimento(fileLines[i].Split('|')));
             }
             return movimentos;
         }
@@ -38,7 +38,7 @@ namespace ProjetoImplantacaoMovimento.Services
             return String.Format($@"{movimento.IdMovimento}|{movimento.NumeroMovimento}|{movimento.Descricao}|{movimento.CriadoPor}|{movimento.CriadoEm}|{movimento.ModificadoPor}|{movimento.ModificadoEm}");
         }
 
-        private Movimento MapMovimentos(string[] movimento)
+        private Movimento MapMovimento(string[] movimento)
         {
             return new Movimento()
             {
