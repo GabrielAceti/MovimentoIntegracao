@@ -1,4 +1,5 @@
-﻿using ProjetoImplantacaoMovimento.Enums;
+﻿using DevExpress.XtraGrid;
+using ProjetoImplantacaoMovimento.Enums;
 using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;
@@ -25,14 +26,23 @@ namespace ProjetoImplantacaoMovimento
         {
             var previsto = new Previsto()
             {
+                IdPrevisto = string.IsNullOrEmpty(textBoxIDPREVISTO.Text) ? string.Empty : textBoxIDPREVISTO.Text,
                 Descricao = textBoxDESCRICAO.Text,
-                CriadoPor = Usuario.Nome,
-                CriadoEm = DateTime.Now.ToString("yyyy-MM-dd"),
                 ModificadoPor = Usuario.Nome,
                 ModificadoEm = DateTime.Now.ToString("yyyy-MM-dd")
             };
-            
-            new PrevistoService().AdicionaPrevisto(previsto);
+
+            if (_acao == AcaoEnum.Novo)
+            {
+                previsto.CriadoPor = Usuario.Nome;
+                previsto.CriadoEm = DateTime.Now.ToString("yyyy-MM-dd");
+                new PrevistoService().AdicionaPrevisto(previsto);
+            }
+            else if (_acao == AcaoEnum.Editar)
+            {
+                new PrevistoService().EditaPrevisto(previsto);
+            }
+
             this.Close();
         }
 
@@ -40,9 +50,17 @@ namespace ProjetoImplantacaoMovimento
         {
             var movimentos = new MovimentoService().GetMovimentos();
 
+            int count = 1;
             foreach(Movimento movimento in movimentos)
             {
-                tabControl1.TabPages.Add(movimento.Descricao); 
+                GridControl gridControl = new GridControl();
+                tabControl1.TabPages.Add(movimento.Descricao);
+
+                gridControl.Width = tabControl1.TabPages[count].Width;
+                gridControl.Height = tabControl1.TabPages[count].Height;
+
+                tabControl1.TabPages[count].Controls.Add(gridControl);
+                count++;
             }
 
             if(_acao == AcaoEnum.Editar)
@@ -58,6 +76,12 @@ namespace ProjetoImplantacaoMovimento
             _acao = AcaoEnum.Editar;
             _previsto = previsto;
 
+            this.ShowDialog();
+        }
+
+        public void Novo()
+        {
+            _acao = AcaoEnum.Novo;
             this.ShowDialog();
         }
     }

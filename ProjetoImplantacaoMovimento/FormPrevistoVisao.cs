@@ -15,8 +15,7 @@ namespace ProjetoImplantacaoMovimento
 
         private void toolStripButtonNOVO_Click(object sender, EventArgs e)
         {
-            FormPrevistoCadastro frm = new FormPrevistoCadastro();
-            frm.ShowDialog();
+            new FormPrevistoCadastro().Novo();
             AtualizaGrid();
         }
 
@@ -27,10 +26,10 @@ namespace ProjetoImplantacaoMovimento
 
         private void AtualizaGrid()
         {
-            gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
             var movimentos = new PrevistoService().GetPrevistos();
-
             gridControlPREVISTO.DataSource = movimentos;
+
+            gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
         }
 
         private void toolStripButtonEDITAR_Click(object sender, EventArgs e)
@@ -39,6 +38,20 @@ namespace ProjetoImplantacaoMovimento
             Previsto previsto = (Previsto)gridView1.GetRow(index);
 
             new FormPrevistoCadastro().Editar(previsto);
+            AtualizaGrid();
+        }
+
+        private void toolStripButtonEXCLUIR_Click(object sender, EventArgs e)
+        {
+            int index = gridView1.FocusedRowHandle;
+            Previsto previsto = (Previsto)gridView1.GetRow(index);
+
+            if (DialogResult.Yes == MessageBox.Show($"Deseja realmente excluir o previsto '{previsto.IdPrevisto}'?", "Pergunta do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+                var previstoService = new PrevistoService();
+                previstoService.ExcluiPrevisto(previsto.IdPrevisto);
+                AtualizaGrid();
+            }
         }
     }
 }

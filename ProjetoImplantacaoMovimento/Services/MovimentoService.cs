@@ -12,11 +12,30 @@ namespace ProjetoImplantacaoMovimento.Services
         {
             var movimentos = GetMovimentos();
 
-            int newId = int.Parse(movimentos.Max(x => x.IdMovimento)) + 1;
+            int newId = movimentos.Count() == 0 ? 1 : int.Parse(movimentos.Max(x => x.IdMovimento)) + 1;
             movimento.IdMovimento = newId.ToString();
 
             var fs = new FileService();
             fs.WriteFile(ParseMovimentoTxt(movimento), MovimentoDefaults.MovimentoPath);
+        }
+
+        public void EditaMovimento(Movimento movimento)
+        {
+            var movimentos = GetMovimentos();
+            ExcluiMovimento(movimento.IdMovimento);
+
+            AdicionaMovimento(movimento);
+        }
+
+        public void ExcluiMovimento(string idMovimento)
+        {
+            var movimentos = GetMovimentos();
+            movimentos.RemoveAll(x => x.IdMovimento == idMovimento);
+
+            List<string> data = ParseMovimentosTxt(movimentos);
+
+            var fileService = new FileService();
+            fileService.WriteAllLines(data, MovimentoDefaults.MovimentoPath);
         }
 
         public List<Movimento> GetMovimentos()
@@ -28,7 +47,7 @@ namespace ProjetoImplantacaoMovimento.Services
 
             for(int i=0; i< fileLines.Count(); i++)
             {
-                movimentos.Add(MapMovimento(fileLines[i].Split('|')));
+                movimentos.Add(MapearMovimento(fileLines[i].Split('|')));
             }
             return movimentos;
         }
@@ -38,7 +57,17 @@ namespace ProjetoImplantacaoMovimento.Services
             return String.Format($@"{movimento.IdMovimento}|{movimento.NumeroMovimento}|{movimento.Descricao}|{movimento.CriadoPor}|{movimento.CriadoEm}|{movimento.ModificadoPor}|{movimento.ModificadoEm}");
         }
 
-        private Movimento MapMovimento(string[] movimento)
+        private List<string> ParseMovimentosTxt(List<Movimento> movimentos)
+        {
+            List<string> data = new List<string>();
+            foreach(Movimento movimento in movimentos)
+            {
+                data.Add(String.Format($@"{movimento.IdMovimento}|{movimento.NumeroMovimento}|{movimento.Descricao}|{movimento.CriadoPor}|{movimento.CriadoEm}|{movimento.ModificadoPor}|{movimento.ModificadoEm}"));
+            }
+            return data;
+        }
+
+        private Movimento MapearMovimento(string[] movimento)
         {
             return new Movimento()
             {

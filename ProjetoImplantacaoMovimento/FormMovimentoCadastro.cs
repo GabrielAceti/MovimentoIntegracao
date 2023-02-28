@@ -25,15 +25,24 @@ namespace ProjetoImplantacaoMovimento
         {
             var movimento = new Movimento()
             {
+                IdMovimento = string.IsNullOrEmpty(textBoxIDMOVIMENTO.Text) ? string.Empty : textBoxIDMOVIMENTO.Text,
                 NumeroMovimento = maskedTextBoxNUMEROMOVIMENTO.Text,
                 Descricao = textBoxDESCRICAO.Text,
-                CriadoPor = Usuario.Nome,
-                CriadoEm = DateTime.Now.ToString("yyyy-MM-dd"),
                 ModificadoPor = Usuario.Nome,
                 ModificadoEm = DateTime.Now.ToString("yyyy-MM-dd")
             };
             
-            new MovimentoService().AdicionaMovimento(movimento);
+            if(_acao == AcaoEnum.Novo)
+            {
+                movimento.CriadoPor = Usuario.Nome;
+                movimento.CriadoEm = DateTime.Now.ToString("yyyy-MM-dd");
+                new MovimentoService().AdicionaMovimento(movimento);
+            }
+            else if(_acao == AcaoEnum.Editar)
+            {
+                new MovimentoService().EditaMovimento(movimento);
+            }
+            
             this.Close();
         }
 
@@ -42,6 +51,12 @@ namespace ProjetoImplantacaoMovimento
             _acao = AcaoEnum.Editar;
             _movimento = movimento;
 
+            this.ShowDialog();
+        }
+
+        public void Novo()
+        {
+            _acao = AcaoEnum.Novo;
             this.ShowDialog();
         }
 

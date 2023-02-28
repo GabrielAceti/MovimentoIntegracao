@@ -99,6 +99,7 @@
             this.toolStripButtonEXCLUIR.Name = "toolStripButtonEXCLUIR";
             this.toolStripButtonEXCLUIR.Size = new System.Drawing.Size(78, 43);
             this.toolStripButtonEXCLUIR.Text = "Excluir";
+            this.toolStripButtonEXCLUIR.Click += new System.EventHandler(this.toolStripButtonEXCLUIR_Click);
             // 
             // FormMovimentosVisao
             // 

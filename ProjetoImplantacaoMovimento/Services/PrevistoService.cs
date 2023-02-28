@@ -19,6 +19,25 @@ namespace ProjetoImplantacaoMovimento.Services
             fs.WriteFile(ParsePrevistoTxt(previsto), MovimentoDefaults.PrevistoPath);
         }
 
+        public void EditaPrevisto(Previsto previsto)
+        {
+            var previstos = GetPrevistos();
+            ExcluiPrevisto(previsto.IdPrevisto);
+
+            AdicionaPrevisto(previsto);
+        }
+
+        public void ExcluiPrevisto(string idPrevisto)
+        {
+            var previstos = GetPrevistos();
+            previstos.RemoveAll(x => x.IdPrevisto == idPrevisto);
+
+            List<string> data = ParsePrevistosTxt(previstos);
+
+            var fileService = new FileService();
+            fileService.WriteAllLines(data, MovimentoDefaults.PrevistoPath);
+        }
+
         public List<Previsto> GetPrevistos()
         {
             var previstos = new List<Previsto>();
@@ -28,7 +47,7 @@ namespace ProjetoImplantacaoMovimento.Services
 
             for(int i=0; i< fileLines.Count(); i++)
             {
-                previstos.Add(MapPrevisto(fileLines[i].Split('|')));
+                previstos.Add(MapearPrevisto(fileLines[i].Split('|')));
             }
             return previstos;
         }
@@ -38,7 +57,17 @@ namespace ProjetoImplantacaoMovimento.Services
             return String.Format($@"{previsto.IdPrevisto}|{previsto.Descricao}|{previsto.CriadoPor}|{previsto.CriadoEm}|{previsto.ModificadoPor}|{previsto.ModificadoEm}");
         }
 
-        private Previsto MapPrevisto(string[] previsto)
+        private List<string> ParsePrevistosTxt(List<Previsto> previstos)
+        {
+            List<string> data = new List<string>();
+            foreach (Previsto previsto in previstos)
+            {
+                data.Add(String.Format($@"{previsto.IdPrevisto}|{previsto.Descricao}|{previsto.CriadoPor}|{previsto.CriadoEm}|{previsto.ModificadoPor}|{previsto.ModificadoEm}"));
+            }
+            return data;
+        }
+
+        private Previsto MapearPrevisto(string[] previsto)
         {
             return new Previsto()
             {
