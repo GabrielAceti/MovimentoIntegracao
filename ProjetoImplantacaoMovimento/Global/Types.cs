@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetoImplantacaoMovimento.Enums
+namespace ProjetoImplantacaoMovimento.Global
 {
-    public enum AcaoEnum
+    public static class Types
     {
-        Novo,
-        Editar,
-        Cancelar
+        public enum Acao { Novo, Editar, Excluir, Cancelar }
     }
 }
