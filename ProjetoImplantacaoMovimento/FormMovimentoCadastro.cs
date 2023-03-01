@@ -69,10 +69,15 @@ namespace ProjetoImplantacaoMovimento
         {
             if(_acao == Global.Types.Acao.Editar)
             {
+                textBoxDATACADASTRO.Text = _movimento.CriadoEm;
                 textBoxIDMOVIMENTO.Text = _movimento.IdMovimento;
                 maskedTextBoxNUMEROMOVIMENTO.Text = _movimento.NumeroMovimento;
                 textBoxDESCRICAO.Text = _movimento.Descricao;
                 textBoxOBSERVACAO.Text = _movimento.Observacao;
+            }
+            else if(_acao == Global.Types.Acao.Novo)
+            {
+                textBoxDATACADASTRO.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
         }
     }
