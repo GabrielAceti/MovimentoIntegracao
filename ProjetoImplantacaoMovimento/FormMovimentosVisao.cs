@@ -1,5 +1,4 @@
 ﻿using ProjetoImplantacaoMovimento.Constant;
-using ProjetoImplantacaoMovimento.Enums;
 using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;

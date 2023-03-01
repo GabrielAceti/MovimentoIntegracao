@@ -78,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant\Constants.cs" />
-    <Compile Include="Enums\AcaoEnum.cs" />
     <Compile Include="FormPrevistoCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +108,7 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global\Types.cs" />
     <Compile Include="Models\Movimento.cs" />
     <Compile Include="Models\Previsto.cs" />
     <Compile Include="Models\Usuario.cs" />

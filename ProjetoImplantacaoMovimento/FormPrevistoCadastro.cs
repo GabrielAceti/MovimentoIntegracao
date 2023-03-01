@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraGrid;
-using ProjetoImplantacaoMovimento.Enums;
+using DevExpress.XtraGrid.Views.Grid;
+using ProjetoImplantacaoMovimento.Constant;
 using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;
@@ -9,7 +10,7 @@ namespace ProjetoImplantacaoMovimento
 {
     public partial class FormPrevistoCadastro : Form
     {
-        private AcaoEnum _acao;
+        private Global.Types.Acao _acao;
         private Previsto _previsto;
 
         public FormPrevistoCadastro ()
@@ -24,23 +25,28 @@ namespace ProjetoImplantacaoMovimento
 
         private void simpleButtonSALVAR_Click(object sender, EventArgs e)
         {
+            var previstoService = new PrevistoService();
             var previsto = new Previsto()
             {
-                IdPrevisto = string.IsNullOrEmpty(textBoxIDPREVISTO.Text) ? string.Empty : textBoxIDPREVISTO.Text,
+                IdPrevisto = string.IsNullOrEmpty(textBoxIDPREVISTO.Text) ? previstoService.GerarNovoId().ToString() : textBoxIDPREVISTO.Text,
                 Descricao = textBoxDESCRICAO.Text,
                 ModificadoPor = Usuario.Nome,
                 ModificadoEm = DateTime.Now.ToString("yyyy-MM-dd")
             };
 
-            if (_acao == AcaoEnum.Novo)
+            if (_acao == Global.Types.Acao.Novo)
             {
                 previsto.CriadoPor = Usuario.Nome;
                 previsto.CriadoEm = DateTime.Now.ToString("yyyy-MM-dd");
-                new PrevistoService().AdicionaPrevisto(previsto);
+
+                previstoService.AdicionaPrevisto(previsto);
             }
-            else if (_acao == AcaoEnum.Editar)
+            else if (_acao == Global.Types.Acao.Editar)
             {
-                new PrevistoService().EditaPrevisto(previsto);
+                previsto.CriadoPor = _previsto.CriadoPor;
+                previsto.CriadoEm = _previsto.CriadoEm;
+
+                previstoService.EditaPrevisto(previsto);
             }
 
             this.Close();
@@ -48,22 +54,30 @@ namespace ProjetoImplantacaoMovimento
 
         private void FormPrevistoCadastro_Load(object sender, EventArgs e)
         {
-            var movimentos = new MovimentoService().GetMovimentos();
+            var movimentoService = new MovimentoService();
+            var movimentos = movimentoService.GetMovimentos();
 
             int count = 1;
             foreach(Movimento movimento in movimentos)
             {
                 GridControl gridControl = new GridControl();
+                GridView gridView = new GridView();
+
                 tabControl1.TabPages.Add(movimento.Descricao);
 
                 gridControl.Width = tabControl1.TabPages[count].Width;
                 gridControl.Height = tabControl1.TabPages[count].Height;
 
+                gridControl.MainView = gridView;
+                gridControl.DataSource = movimentoService.GetMovimentosById(movimento.IdMovimento);
+
                 tabControl1.TabPages[count].Controls.Add(gridControl);
+                gridView = GridViewDefaults.GridViewConfigurationDefaults(gridView);
+
                 count++;
             }
 
-            if(_acao == AcaoEnum.Editar)
+            if(_acao == Global.Types.Acao.Editar)
             {
                 textBoxDATACADASTRO.Text = _previsto.CriadoEm;
                 textBoxIDPREVISTO.Text = _previsto.IdPrevisto;
@@ -73,7 +87,7 @@ namespace ProjetoImplantacaoMovimento
 
         public void Editar(Previsto previsto)
         {
-            _acao = AcaoEnum.Editar;
+            _acao = Global.Types.Acao.Editar;
             _previsto = previsto;
 
             this.ShowDialog();
@@ -81,7 +95,7 @@ namespace ProjetoImplantacaoMovimento
 
         public void Novo()
         {
-            _acao = AcaoEnum.Novo;
+            _acao = Global.Types.Acao.Novo;
             this.ShowDialog();
         }
     }

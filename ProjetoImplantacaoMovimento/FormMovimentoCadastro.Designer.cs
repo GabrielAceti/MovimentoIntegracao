@@ -37,12 +37,14 @@
             this.maskedTextBoxNUMEROMOVIMENTO = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxDESCRICAO = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxOBSERVACAO = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // simpleButtonSALVAR
             // 
             this.simpleButtonSALVAR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButtonSALVAR.Location = new System.Drawing.Point(399, 151);
+            this.simpleButtonSALVAR.Location = new System.Drawing.Point(417, 234);
             this.simpleButtonSALVAR.Name = "simpleButtonSALVAR";
             this.simpleButtonSALVAR.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonSALVAR.TabIndex = 0;
@@ -52,7 +54,7 @@
             // simpleButtonCANCELAR
             // 
             this.simpleButtonCANCELAR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButtonCANCELAR.Location = new System.Drawing.Point(318, 151);
+            this.simpleButtonCANCELAR.Location = new System.Drawing.Point(336, 234);
             this.simpleButtonCANCELAR.Name = "simpleButtonCANCELAR";
             this.simpleButtonCANCELAR.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonCANCELAR.TabIndex = 1;
@@ -109,12 +111,31 @@
             this.textBoxDESCRICAO.Size = new System.Drawing.Size(463, 20);
             this.textBoxDESCRICAO.TabIndex = 7;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 130);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Observação";
+            // 
+            // textBoxOBSERVACAO
+            // 
+            this.textBoxOBSERVACAO.Location = new System.Drawing.Point(12, 146);
+            this.textBoxOBSERVACAO.Multiline = true;
+            this.textBoxOBSERVACAO.Name = "textBoxOBSERVACAO";
+            this.textBoxOBSERVACAO.Size = new System.Drawing.Size(463, 80);
+            this.textBoxOBSERVACAO.TabIndex = 9;
+            // 
             // FormMovimentoCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(486, 186);
+            this.ClientSize = new System.Drawing.Size(504, 269);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBoxOBSERVACAO);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxDESCRICAO);
             this.Controls.Add(this.maskedTextBoxNUMEROMOVIMENTO);
@@ -143,6 +164,8 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxNUMEROMOVIMENTO;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxDESCRICAO;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxOBSERVACAO;
     }
 }
 

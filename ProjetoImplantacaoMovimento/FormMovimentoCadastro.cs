@@ -1,5 +1,4 @@
-﻿using ProjetoImplantacaoMovimento.Enums;
-using ProjetoImplantacaoMovimento.Models;
+﻿using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;
 using System.Windows.Forms;
@@ -8,7 +7,7 @@ namespace ProjetoImplantacaoMovimento
 {
     public partial class FormMovimentoCadastro : Form
     {
-        private AcaoEnum _acao;
+        private Global.Types.Acao _acao;
         private Movimento _movimento;   
 
         public FormMovimentoCadastro()
@@ -23,24 +22,30 @@ namespace ProjetoImplantacaoMovimento
 
         private void simpleButtonSALVAR_Click(object sender, EventArgs e)
         {
+            var movimentoService = new MovimentoService();
             var movimento = new Movimento()
             {
-                IdMovimento = string.IsNullOrEmpty(textBoxIDMOVIMENTO.Text) ? string.Empty : textBoxIDMOVIMENTO.Text,
+                IdMovimento = string.IsNullOrEmpty(textBoxIDMOVIMENTO.Text) ? movimentoService.GerarNovoId().ToString() : textBoxIDMOVIMENTO.Text,
                 NumeroMovimento = maskedTextBoxNUMEROMOVIMENTO.Text,
                 Descricao = textBoxDESCRICAO.Text,
+                Observacao = textBoxOBSERVACAO.Text,
                 ModificadoPor = Usuario.Nome,
                 ModificadoEm = DateTime.Now.ToString("yyyy-MM-dd")
             };
             
-            if(_acao == AcaoEnum.Novo)
+            if(_acao == Global.Types.Acao.Novo)
             {
                 movimento.CriadoPor = Usuario.Nome;
                 movimento.CriadoEm = DateTime.Now.ToString("yyyy-MM-dd");
-                new MovimentoService().AdicionaMovimento(movimento);
+
+                movimentoService.AdicionaMovimento(movimento);
             }
-            else if(_acao == AcaoEnum.Editar)
+            else if(_acao == Global.Types.Acao.Editar)
             {
-                new MovimentoService().EditaMovimento(movimento);
+                movimento.CriadoPor = _movimento.CriadoPor;
+                movimento.CriadoEm = _movimento.CriadoEm;
+
+                movimentoService.EditaMovimento(movimento);
             }
             
             this.Close();
@@ -48,7 +53,7 @@ namespace ProjetoImplantacaoMovimento
 
         public void Editar(Movimento movimento)
         {
-            _acao = AcaoEnum.Editar;
+            _acao = Global.Types.Acao.Editar;
             _movimento = movimento;
 
             this.ShowDialog();
@@ -56,17 +61,18 @@ namespace ProjetoImplantacaoMovimento
 
         public void Novo()
         {
-            _acao = AcaoEnum.Novo;
+            _acao = Global.Types.Acao.Novo;
             this.ShowDialog();
         }
 
         private void FormMovimentoCadastro_Load(object sender, EventArgs e)
         {
-            if(_acao == AcaoEnum.Editar)
+            if(_acao == Global.Types.Acao.Editar)
             {
                 textBoxIDMOVIMENTO.Text = _movimento.IdMovimento;
                 maskedTextBoxNUMEROMOVIMENTO.Text = _movimento.NumeroMovimento;
                 textBoxDESCRICAO.Text = _movimento.Descricao;
+                textBoxOBSERVACAO.Text = _movimento.Observacao;
             }
         }
     }
