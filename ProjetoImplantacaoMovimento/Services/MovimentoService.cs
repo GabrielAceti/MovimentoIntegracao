@@ -10,11 +10,6 @@ namespace ProjetoImplantacaoMovimento.Services
     {
         public void AdicionaMovimento(Movimento movimento)
         {
-            var movimentos = GetMovimentos();
-
-            int newId = movimentos.Count() == 0 ? 1 : int.Parse(movimentos.Max(x => x.IdMovimento)) + 1;
-            movimento.IdMovimento = newId.ToString();
-
             var fs = new FileService();
             fs.WriteFile(ParseMovimentoTxt(movimento), MovimentoDefaults.MovimentoPath);
         }
@@ -45,40 +40,64 @@ namespace ProjetoImplantacaoMovimento.Services
             var fileService = new FileService();
             string[] fileLines = fileService.ReadFile(MovimentoDefaults.MovimentoPath);
 
-            for(int i=0; i< fileLines.Count(); i++)
+            for (int i = 0; i < fileLines.Count(); i++)
             {
                 movimentos.Add(MapearMovimento(fileLines[i].Split('|')));
             }
             return movimentos;
         }
 
+        public List<Movimento> GetMovimentosById(string idMovimento)
+        {
+            var movimentos = new List<Movimento>();
+
+            var fileService = new FileService();
+            IEnumerable<string> fileLines = fileService.ReadFile(MovimentoDefaults.MovimentoPath).Where(x => x.StartsWith(idMovimento));
+
+            foreach (string line in fileLines)
+            {
+                movimentos.Add(MapearMovimento(line.Split('|')));
+            }
+            return movimentos;
+        }
+
         private string ParseMovimentoTxt(Movimento movimento)
         {
-            return String.Format($@"{movimento.IdMovimento}|{movimento.NumeroMovimento}|{movimento.Descricao}|{movimento.CriadoPor}|{movimento.CriadoEm}|{movimento.ModificadoPor}|{movimento.ModificadoEm}");
+            return String.Format($@"{movimento.IdMovimento}|{movimento.NumeroMovimento}|{movimento.Descricao}|{movimento.Observacao}|{movimento.CriadoPor}|{movimento.CriadoEm}|{movimento.ModificadoPor}|{movimento.ModificadoEm}");
         }
 
         private List<string> ParseMovimentosTxt(List<Movimento> movimentos)
         {
             List<string> data = new List<string>();
-            foreach(Movimento movimento in movimentos)
+            foreach (Movimento movimento in movimentos)
             {
-                data.Add(String.Format($@"{movimento.IdMovimento}|{movimento.NumeroMovimento}|{movimento.Descricao}|{movimento.CriadoPor}|{movimento.CriadoEm}|{movimento.ModificadoPor}|{movimento.ModificadoEm}"));
+                data.Add(String.Format($@"{movimento.IdMovimento}|{movimento.NumeroMovimento}|{movimento.Descricao}|{movimento.Observacao}|{movimento.CriadoPor}|{movimento.CriadoEm}|{movimento.ModificadoPor}|{movimento.ModificadoEm}"));
             }
             return data;
         }
 
-        private Movimento MapearMovimento(string[] movimento)
+        private Movimento MapearMovimento(string[] movimentos)
         {
+            if (string.IsNullOrEmpty(movimentos[0]))
+                return null;
+
             return new Movimento()
             {
-                IdMovimento = movimento[0],
-                NumeroMovimento = movimento[1],
-                Descricao = movimento[2],
-                CriadoPor = movimento[3],
-                CriadoEm = movimento[4],
-                ModificadoPor = movimento[5],
-                ModificadoEm = movimento[6]
+                IdMovimento = movimentos[0],
+                NumeroMovimento = movimentos[1],
+                Descricao = movimentos[2],
+                Observacao = movimentos[3],
+                CriadoPor = movimentos[4],
+                CriadoEm = movimentos[5],
+                ModificadoPor = movimentos[6],
+                ModificadoEm = movimentos[7]
             };
+        }
+
+        public int GerarNovoId()
+        {
+            var movimentos = GetMovimentos();
+            return movimentos.Count() == 0 ? 1 : int.Parse(movimentos.Max(x => x.IdMovimento)) + 1;
         }
     }
 }

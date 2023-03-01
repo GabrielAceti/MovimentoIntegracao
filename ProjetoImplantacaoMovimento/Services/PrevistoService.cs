@@ -10,11 +10,6 @@ namespace ProjetoImplantacaoMovimento.Services
     {
         public void AdicionaPrevisto(Previsto previsto)
         {
-            var previstos = GetPrevistos();
-
-            int newId = previstos.Count() == 0 ? 1 : int.Parse(previstos.Max(x => x.IdPrevisto)) + 1;
-            previsto.IdPrevisto = newId.ToString();
-
             var fs = new FileService();
             fs.WriteFile(ParsePrevistoTxt(previsto), MovimentoDefaults.PrevistoPath);
         }
@@ -78,6 +73,12 @@ namespace ProjetoImplantacaoMovimento.Services
                 ModificadoPor = previsto[4],
                 ModificadoEm = previsto[5]
             };
+        }
+
+        public int GerarNovoId()
+        {
+            var previstos = GetPrevistos();
+            return previstos.Count() == 0 ? 1 : int.Parse(previstos.Max(x => x.IdPrevisto)) + 1;
         }
     }
 }
