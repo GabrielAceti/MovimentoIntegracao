@@ -64,6 +64,9 @@ namespace ProjetoImplantacaoMovimento.Services
 
         private Previsto MapearPrevisto(string[] previsto)
         {
+            if (string.IsNullOrEmpty(previsto[0]))
+                return null;
+
             return new Previsto()
             {
                 IdPrevisto = previsto[0],
