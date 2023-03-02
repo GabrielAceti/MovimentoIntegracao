@@ -6,28 +6,28 @@ using System.Windows.Forms;
 
 namespace ProjetoImplantacaoMovimento
 {
-    public partial class FormMovimentosVisao : Form
+    public partial class FormItensVisao : Form
     {
-        public FormMovimentosVisao()
+        public FormItensVisao()
         {
             InitializeComponent();
         }
 
         private void toolStripButtonNOVO_Click(object sender, EventArgs e)
         {
-            new FormMovimentoCadastro().Novo();
+            new FormItemCadastro().Novo();
             AtualizaGrid();
         }
 
-        private void FormMovimentosVisao_Load(object sender, EventArgs e)
+        private void FormItensVisao_Load(object sender, EventArgs e)
         {
             AtualizaGrid();
         }
 
         private void AtualizaGrid()
         {
-            var movimentos = new MovimentoService().GetMovimentos();
-            gridControlMOVIMENTOS.DataSource = movimentos;
+            var itens = new ItemService().GetItens();
+            gridControlITENS.DataSource = itens;
 
             gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
         }
@@ -35,23 +35,21 @@ namespace ProjetoImplantacaoMovimento
         private void toolStripButtonEDITAR_Click(object sender, EventArgs e)
         {
             int index = gridView1.FocusedRowHandle;
-            Movimento movimento = (Movimento)gridView1.GetRow(index);
+            Item item = (Item)gridView1.GetRow(index);
 
-            movimento.ItensMovimento = new ItemMovimentoService().GetItensMovimentoByIdMovimento(movimento.IdMovimento);
-
-            new FormMovimentoCadastro().Editar(movimento);
+            new FormItemCadastro().Editar(item);
             AtualizaGrid();
         }
 
         private void toolStripButtonEXCLUIR_Click(object sender, EventArgs e)
         {
             int index = gridView1.FocusedRowHandle;
-            Movimento movimento = (Movimento)gridView1.GetRow(index);
+            Item item = (Item)gridView1.GetRow(index);
 
-            if (DialogResult.Yes == MessageBox.Show($"Deseja realmente excluir o movimento '{movimento.IdMovimento}'?", "Pergunta do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            if (DialogResult.Yes == MessageBox.Show($"Deseja realmente excluir o item '{item.IdItem}'?", "Pergunta do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
-                var movimentoService = new MovimentoService();
-                movimentoService.ExcluiMovimento(movimento);
+                var itemService = new ItemService();
+                itemService.ExcluiItem(item.IdItem);
                 AtualizaGrid();
             }            
         }

@@ -12,25 +12,27 @@ namespace ProjetoImplantacaoMovimento.Services
         {
             var fs = new FileService();
             fs.WriteFile(ParseMovimentoTxt(movimento), MovimentoDefaults.MovimentoPath);
+
+            new ItemMovimentoService().AdicionaItensMovimento(movimento.ItensMovimento);
         }
 
         public void EditaMovimento(Movimento movimento)
         {
-            var movimentos = GetMovimentos();
-            ExcluiMovimento(movimento.IdMovimento);
-
+            ExcluiMovimento(movimento);
             AdicionaMovimento(movimento);
         }
 
-        public void ExcluiMovimento(string idMovimento)
+        public void ExcluiMovimento(Movimento movimento)
         {
             var movimentos = GetMovimentos();
-            movimentos.RemoveAll(x => x.IdMovimento == idMovimento);
+            movimentos.RemoveAll(x => x.IdMovimento == movimento.IdMovimento);
 
             List<string> data = ParseMovimentosTxt(movimentos);
 
             var fileService = new FileService();
             fileService.WriteAllLines(data, MovimentoDefaults.MovimentoPath);
+
+            new ItemMovimentoService().ExcluiItensMovimento(movimento.ItensMovimento);
         }
 
         public List<Movimento> GetMovimentos()

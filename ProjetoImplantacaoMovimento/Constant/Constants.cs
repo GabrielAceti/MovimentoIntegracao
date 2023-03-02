@@ -1,9 +1,4 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoImplantacaoMovimento.Constant
 {
@@ -11,6 +6,8 @@ namespace ProjetoImplantacaoMovimento.Constant
     {
         public const string MovimentoPath = "../../Data/Movimentos.txt";
         public const string PrevistoPath = "../../Data/Previstos.txt";
+        public const string ItemPath = "../../Data/Itens.txt";
+        public const string ItemMovimentoPath = "../../Data/ItensMovimento.txt";
     }
 
     public static class GridViewDefaults

@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace ProjetoImplantacaoMovimento.Models
+﻿namespace ProjetoImplantacaoMovimento.Models
 {
-    public class Movimento
+    public class ItemMovimento
     {
+        public string IdItemMovimento { get; set; }
+        public string IdItem { get; set; }
         public string IdMovimento { get; set; }
-        public string NumeroMovimento { get; set; }
-        public string Descricao { get; set; }
-        public List<ItemMovimento> ItensMovimento { get; set; }
+        public string IdPrevisto { get; set; }
         public string Observacao { get; set; }
         public string CriadoPor { get; set; }
         public string CriadoEm { get; set; }

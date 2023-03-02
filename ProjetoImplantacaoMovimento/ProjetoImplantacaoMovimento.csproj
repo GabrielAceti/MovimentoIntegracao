@@ -78,6 +78,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant\Constants.cs" />
+    <Compile Include="FormItensVisao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItensVisao.Designer.cs">
+      <DependentUpon>FormItensVisao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemCadastro.Designer.cs">
+      <DependentUpon>FormItemCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpSelecionaItemMovimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpSelecionaItemMovimento.Designer.cs">
+      <DependentUpon>FormPopUpSelecionaItemMovimento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrevistoCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,15 +126,40 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSelecionaPrevistoVisao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelecionaPrevistoVisao.Designer.cs">
+      <DependentUpon>FormSelecionaPrevistoVisao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelecionaItemVisao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelecionaItemVisao.Designer.cs">
+      <DependentUpon>FormSelecionaItemVisao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global\Types.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemMovimento.cs" />
     <Compile Include="Models\Movimento.cs" />
     <Compile Include="Models\Previsto.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\ItemMovimentoService.cs" />
+    <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\PrevistoService.cs" />
     <Compile Include="Services\MovimentoService.cs" />
+    <EmbeddedResource Include="FormItensVisao.resx">
+      <DependentUpon>FormItensVisao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemCadastro.resx">
+      <DependentUpon>FormItemCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpSelecionaItemMovimento.resx">
+      <DependentUpon>FormPopUpSelecionaItemMovimento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrevistoCadastro.resx">
       <DependentUpon>FormPrevistoCadastro.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +174,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelecionaPrevistoVisao.resx">
+      <DependentUpon>FormSelecionaPrevistoVisao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelecionaItemVisao.resx">
+      <DependentUpon>FormSelecionaItemVisao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
