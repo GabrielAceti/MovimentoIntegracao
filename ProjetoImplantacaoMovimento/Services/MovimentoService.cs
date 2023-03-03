@@ -58,7 +58,10 @@ namespace ProjetoImplantacaoMovimento.Services
 
             foreach (string line in fileLines)
             {
-                movimentos.Add(MapearMovimento(line.Split('|')));
+                var movimentoMapeado = MapearMovimento(line.Split('|'));
+                movimentoMapeado.ItensMovimento = new ItemMovimentoService().GetItensMovimentoByIdMovimento(movimentoMapeado.IdMovimento);
+
+                movimentos.Add(movimentoMapeado);
             }
             return movimentos;
         }

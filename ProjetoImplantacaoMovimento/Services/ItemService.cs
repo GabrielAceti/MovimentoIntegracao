@@ -47,7 +47,7 @@ namespace ProjetoImplantacaoMovimento.Services
             return itens;
         }
 
-        public List<Item> GetItensById(string idItem)
+        public Item GetItemById(string idItem)
         {
             var itens = new List<Item>();
 
@@ -58,12 +58,12 @@ namespace ProjetoImplantacaoMovimento.Services
             {
                 itens.Add(MapearItem(line.Split('|')));
             }
-            return itens;
+            return itens.FirstOrDefault();
         }
 
         private string ParseItemTxt(Item item)
         {
-            return String.Format($@"{item.IdItem}|{item.IdMovimento}|{item.IdPrevisto}|{item.Descricao}|{item.CriadoPor}|{item.CriadoEm}|{item.ModificadoPor}|{item.ModificadoEm}");
+            return String.Format($@"{item.IdItem}|{item.Descricao}|{item.CriadoPor}|{item.CriadoEm}|{item.ModificadoPor}|{item.ModificadoEm}");
         }
 
         private List<string> ParseItensTxt(List<Item> Itenss)
@@ -71,7 +71,7 @@ namespace ProjetoImplantacaoMovimento.Services
             List<string> data = new List<string>();
             foreach (Item item in Itenss)
             {
-                data.Add(String.Format($@"{item.IdItem}|{item.IdMovimento}|{item.IdPrevisto}|{item.Descricao}|{item.CriadoPor}|{item.CriadoEm}|{item.ModificadoPor}|{item.ModificadoEm}"));
+                data.Add(String.Format($@"{item.IdItem}|{item.Descricao}|{item.CriadoPor}|{item.CriadoEm}|{item.ModificadoPor}|{item.ModificadoEm}"));
             }
             return data;
         }
@@ -84,13 +84,11 @@ namespace ProjetoImplantacaoMovimento.Services
             return new Item()
             {
                 IdItem = itens[0],
-                IdMovimento = itens[1],
-                IdPrevisto = itens[2],
-                Descricao = itens[3],
-                CriadoPor = itens[4],
-                CriadoEm = itens[5],
-                ModificadoPor = itens[6],
-                ModificadoEm = itens[7]
+                Descricao = itens[1],
+                CriadoPor = itens[2],
+                CriadoEm = itens[3],
+                ModificadoPor = itens[4],
+                ModificadoEm = itens[5]
             };
         }
 

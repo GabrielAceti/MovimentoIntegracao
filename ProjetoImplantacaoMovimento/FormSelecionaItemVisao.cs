@@ -9,12 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetoImplantacaoMovimento.Constant;
 
 namespace ProjetoImplantacaoMovimento
 {
     public partial class FormSelecionaItemVisao : Form
     {
         public Item Item { get; set; }
+        public Global.Types.Acao Acao { get; set; }
 
         public FormSelecionaItemVisao()
         {
@@ -29,10 +31,12 @@ namespace ProjetoImplantacaoMovimento
         private void AtualizaGrid()
         {
             gridControlITENSMOVIMENTO.DataSource = new ItemService().GetItens();
+            gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
         }
 
         private void simpleButtonCANCELAR_Click(object sender, EventArgs e)
         {
+            Acao = Global.Types.Acao.Cancelar;
             this.Close();
         }
 

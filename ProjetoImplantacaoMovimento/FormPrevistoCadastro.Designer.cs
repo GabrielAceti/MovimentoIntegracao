@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrevistoCadastro));
             this.simpleButtonSALVAR = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButtonCANCELAR = new DevExpress.XtraEditors.SimpleButton();
-            this.textBoxIDPREVISTO = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxIDPREVISTO = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxDESCRICAO = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPageCADASTRO = new System.Windows.Forms.TabPage();
-            this.textBoxDATACADASTRO = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBoxDATACADASTRO = new System.Windows.Forms.TextBox();
+            this.tabPageCADASTRO = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPageCADASTRO.SuspendLayout();
             this.SuspendLayout();
@@ -63,13 +63,14 @@
             this.simpleButtonCANCELAR.Text = "Cancelar";
             this.simpleButtonCANCELAR.Click += new System.EventHandler(this.simpleButtonCANCELAR_Click);
             // 
-            // textBoxIDPREVISTO
+            // tabControl1
             // 
-            this.textBoxIDPREVISTO.Enabled = false;
-            this.textBoxIDPREVISTO.Location = new System.Drawing.Point(6, 59);
-            this.textBoxIDPREVISTO.Name = "textBoxIDPREVISTO";
-            this.textBoxIDPREVISTO.Size = new System.Drawing.Size(100, 20);
-            this.textBoxIDPREVISTO.TabIndex = 2;
+            this.tabControl1.Controls.Add(this.tabPageCADASTRO);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(523, 418);
+            this.tabControl1.TabIndex = 9;
             // 
             // label1
             // 
@@ -79,6 +80,14 @@
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Id Previsto";
+            // 
+            // textBoxIDPREVISTO
+            // 
+            this.textBoxIDPREVISTO.Enabled = false;
+            this.textBoxIDPREVISTO.Location = new System.Drawing.Point(6, 59);
+            this.textBoxIDPREVISTO.Name = "textBoxIDPREVISTO";
+            this.textBoxIDPREVISTO.Size = new System.Drawing.Size(100, 20);
+            this.textBoxIDPREVISTO.TabIndex = 2;
             // 
             // label3
             // 
@@ -96,14 +105,22 @@
             this.textBoxDESCRICAO.Size = new System.Drawing.Size(463, 20);
             this.textBoxDESCRICAO.TabIndex = 7;
             // 
-            // tabControl1
+            // label2
             // 
-            this.tabControl1.Controls.Add(this.tabPageCADASTRO);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(523, 418);
-            this.tabControl1.TabIndex = 9;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Data Cadastro";
+            // 
+            // textBoxDATACADASTRO
+            // 
+            this.textBoxDATACADASTRO.Enabled = false;
+            this.textBoxDATACADASTRO.Location = new System.Drawing.Point(6, 20);
+            this.textBoxDATACADASTRO.Name = "textBoxDATACADASTRO";
+            this.textBoxDATACADASTRO.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDATACADASTRO.TabIndex = 9;
             // 
             // tabPageCADASTRO
             // 
@@ -120,23 +137,6 @@
             this.tabPageCADASTRO.TabIndex = 0;
             this.tabPageCADASTRO.Text = "Cadastro";
             this.tabPageCADASTRO.UseVisualStyleBackColor = true;
-            // 
-            // textBoxDATACADASTRO
-            // 
-            this.textBoxDATACADASTRO.Enabled = false;
-            this.textBoxDATACADASTRO.Location = new System.Drawing.Point(6, 20);
-            this.textBoxDATACADASTRO.Name = "textBoxDATACADASTRO";
-            this.textBoxDATACADASTRO.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDATACADASTRO.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Data Cadastro";
             // 
             // FormPrevistoCadastro
             // 
@@ -163,14 +163,14 @@
 
         private DevExpress.XtraEditors.SimpleButton simpleButtonSALVAR;
         private DevExpress.XtraEditors.SimpleButton simpleButtonCANCELAR;
-        private System.Windows.Forms.TextBox textBoxIDPREVISTO;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxDESCRICAO;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageCADASTRO;
         private System.Windows.Forms.TextBox textBoxDATACADASTRO;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxDESCRICAO;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxIDPREVISTO;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -47,6 +47,20 @@ namespace ProjetoImplantacaoMovimento.Services
             return previstos;
         }
 
+        public Previsto GetPrevistoById(string idPrevisto)
+        {
+            var previstos = new List<Previsto>();
+
+            var fileService = new FileService();
+            IEnumerable<string> fileLines = fileService.ReadFile(MovimentoDefaults.PrevistoPath).Where(x => x.StartsWith(idPrevisto));
+
+            foreach (string line in fileLines)
+            {
+                previstos.Add(MapearPrevisto(line.Split('|')));
+            }
+            return previstos.FirstOrDefault();
+        }
+
         private string ParsePrevistoTxt(Previsto previsto)
         {
             return String.Format($@"{previsto.IdPrevisto}|{previsto.Descricao}|{previsto.CriadoPor}|{previsto.CriadoEm}|{previsto.ModificadoPor}|{previsto.ModificadoEm}");

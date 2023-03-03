@@ -69,7 +69,12 @@ namespace ProjetoImplantacaoMovimento
                 gridControl.Height = tabControl1.TabPages[count].Height;
 
                 gridControl.MainView = gridView;
-                gridControl.DataSource = movimentoService.GetMovimentosById(movimento.IdMovimento);
+                var previstoMovimento = movimentoService.GetMovimentosById(movimento.IdMovimento)[0];
+
+                if(_acao == Global.Types.Acao.Editar)
+                {
+                    gridControl.DataSource = previstoMovimento.ItensMovimento.FindAll(x => x.IdPrevisto == _previsto.IdPrevisto);
+                }                
 
                 tabControl1.TabPages[count].Controls.Add(gridControl);
                 gridView = GridViewDefaults.GridViewConfigurationDefaults(gridView);

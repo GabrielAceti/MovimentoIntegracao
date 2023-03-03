@@ -165,6 +165,7 @@
             this.Name = "FormPopUpSelecionaItemMovimento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selecionar Item Movimento";
+            this.Load += new System.EventHandler(this.FormPopUpSelecionaItemMovimento_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
