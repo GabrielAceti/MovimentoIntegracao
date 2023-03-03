@@ -120,10 +120,13 @@ namespace ProjetoImplantacaoMovimento
             FormPopUpSelecionaItemMovimento frm = new FormPopUpSelecionaItemMovimento();
             frm.Editar(itemMovimento);
 
-            _itensMovimento.RemoveAll(x => x.IdItemMovimento == itemMovimento.IdItemMovimento);
-            _itensMovimento.Add(frm.ItemMovimento);
+            if(frm.Acao != Global.Types.Acao.Cancelar)
+            {
+                _itensMovimento.RemoveAll(x => x.IdItemMovimento == itemMovimento.IdItemMovimento);
+                _itensMovimento.Add(frm.ItemMovimento);
 
-            AtualizaGridItens();
+                AtualizaGridItens();
+            }            
         }
     }
 }
