@@ -4,6 +4,7 @@ using ProjetoImplantacaoMovimento.Constant;
 using ProjetoImplantacaoMovimento.Models;
 using ProjetoImplantacaoMovimento.Services;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ProjetoImplantacaoMovimento
@@ -73,7 +74,21 @@ namespace ProjetoImplantacaoMovimento
 
                 if(_acao == Global.Types.Acao.Editar)
                 {
-                    gridControl.DataSource = previstoMovimento.ItensMovimento.FindAll(x => x.IdPrevisto == _previsto.IdPrevisto);
+                    var itensMovimento = previstoMovimento.ItensMovimento.FindAll(x => x.IdPrevisto == _previsto.IdPrevisto);
+                    var itens = new ItemService().GetItens();
+
+                    var innerJoin = from itm in itensMovimento
+                                    join it in itens on itm.IdItem equals it.IdItem
+                                    select new
+                                    {
+                                        IdItemMovimento = itm.IdItemMovimento,
+                                        IdItem = it.IdItem,
+                                        IdMovimento = itm.IdMovimento,
+                                        Descricao = it.Descricao,
+                                        Observacao = itm.Observacao
+                                    };
+
+                    gridControl.DataSource = innerJoin;
                 }                
 
                 tabControl1.TabPages[count].Controls.Add(gridControl);

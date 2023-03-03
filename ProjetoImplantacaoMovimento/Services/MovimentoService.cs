@@ -42,9 +42,12 @@ namespace ProjetoImplantacaoMovimento.Services
             var fileService = new FileService();
             string[] fileLines = fileService.ReadFile(MovimentoDefaults.MovimentoPath);
 
-            for (int i = 0; i < fileLines.Count(); i++)
+            foreach (string line in fileLines)
             {
-                movimentos.Add(MapearMovimento(fileLines[i].Split('|')));
+                var movimentoMapeado = MapearMovimento(line.Split('|'));
+                movimentoMapeado.ItensMovimento = new ItemMovimentoService().GetItensMovimentoByIdMovimento(movimentoMapeado.IdMovimento);
+
+                movimentos.Add(movimentoMapeado);
             }
             return movimentos;
         }
