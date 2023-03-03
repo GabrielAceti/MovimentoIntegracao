@@ -93,36 +93,13 @@ namespace ProjetoImplantacaoMovimento
         private void toolStripButtonNOVO_Click(object sender, EventArgs e)
         {
             FormPopUpSelecionaItemMovimento frm = new FormPopUpSelecionaItemMovimento();
-            frm.ShowDialog();
+            frm.Novo();
 
             if(frm.Acao != Global.Types.Acao.Cancelar)
             {
-                ItemMovimento itemMovimento = new ItemMovimento
-                {
-                    IdItemMovimento = new ItemMovimentoService().GerarNovoId().ToString(),
-                    IdItem = frm.Item.IdItem,
-                    IdPrevisto = frm.Previsto.IdPrevisto,
-                    Observacao = frm.Observacao,
-                    ModificadoPor = Usuario.Nome,
-                    ModificadoEm = DateTime.Now.ToString("yyyy-MM-dd")
-                };
-
-                if (_acao == Global.Types.Acao.Novo)
-                {
-                    itemMovimento.CriadoPor = Usuario.Nome;
-                    itemMovimento.CriadoEm = DateTime.Now.ToString("yyyy-MM-dd");
-                }
-
-                if (_acao == Global.Types.Acao.Editar)
-                {
-                    itemMovimento.CriadoPor = _movimento.CriadoPor;
-                    itemMovimento.CriadoEm = _movimento.CriadoEm;
-                }
-
-                _itensMovimento.Add(itemMovimento);
-            }
-
-            AtualizaGridItens();                
+                _itensMovimento.Add(frm.ItemMovimento);
+                AtualizaGridItens();
+            }                            
         }
 
         private void AtualizaGridItens()
@@ -133,6 +110,20 @@ namespace ProjetoImplantacaoMovimento
                 gridControlITENSMOVIMENTO.DataSource = _movimento.ItensMovimento;
 
             gridView1 = GridViewDefaults.GridViewConfigurationDefaults(gridView1);
+        }
+
+        private void toolStripButtonEDITAR_Click(object sender, EventArgs e)
+        {
+            int index = gridView1.FocusedRowHandle;
+            ItemMovimento itemMovimento = (ItemMovimento)gridView1.GetRow(index);
+
+            FormPopUpSelecionaItemMovimento frm = new FormPopUpSelecionaItemMovimento();
+            frm.Editar(itemMovimento);
+
+            _itensMovimento.RemoveAll(x => x.IdItemMovimento == itemMovimento.IdItemMovimento);
+            _itensMovimento.Add(frm.ItemMovimento);
+
+            AtualizaGridItens();
         }
     }
 }

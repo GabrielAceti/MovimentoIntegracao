@@ -256,6 +256,7 @@
             this.toolStripButtonEDITAR.Name = "toolStripButtonEDITAR";
             this.toolStripButtonEDITAR.Size = new System.Drawing.Size(73, 43);
             this.toolStripButtonEDITAR.Text = "Editar";
+            this.toolStripButtonEDITAR.Click += new System.EventHandler(this.toolStripButtonEDITAR_Click);
             // 
             // toolStripButtonEXCLUIR
             // 
