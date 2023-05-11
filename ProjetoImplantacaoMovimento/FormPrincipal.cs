@@ -38,5 +38,12 @@ namespace ProjetoImplantacaoMovimento
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            FormClienteVisao frm = new FormClienteVisao();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

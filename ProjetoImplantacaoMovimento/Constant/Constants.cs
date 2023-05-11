@@ -8,6 +8,7 @@ namespace ProjetoImplantacaoMovimento.Constant
         public const string PrevistoPath = "../../Data/Previstos.txt";
         public const string ItemPath = "../../Data/Itens.txt";
         public const string ItemMovimentoPath = "../../Data/ItensMovimento.txt";
+        public const string ClientePath = "../../Data/Clientes.txt";
     }
 
     public static class GridViewDefaults

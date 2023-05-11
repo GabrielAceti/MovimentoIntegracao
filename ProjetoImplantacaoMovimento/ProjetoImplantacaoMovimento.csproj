@@ -77,7 +77,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormClienteVisao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClienteVisao.Designer.cs">
+      <DependentUpon>FormClienteVisao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Services\ClienteService.cs" />
     <Compile Include="Constant\Constants.cs" />
+    <Compile Include="FormClienteCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClienteCadastro.Designer.cs">
+      <DependentUpon>FormClienteCadastro.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormItensVisao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +165,12 @@
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\PrevistoService.cs" />
     <Compile Include="Services\MovimentoService.cs" />
+    <EmbeddedResource Include="FormClienteVisao.resx">
+      <DependentUpon>FormClienteVisao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClienteCadastro.resx">
+      <DependentUpon>FormClienteCadastro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormItensVisao.resx">
       <DependentUpon>FormItensVisao.cs</DependentUpon>
     </EmbeddedResource>
